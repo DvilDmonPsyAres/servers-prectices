@@ -88,6 +88,7 @@ const server = http.createServer((req, res) => {
   let reqBody = "";
   req.on("data", (data) => {
     reqBody += data;
+    console.log(reqBody);
   });
 
   // When the request is finished processing the entire body

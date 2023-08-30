@@ -1,6 +1,6 @@
 function stretch() {
   // Your code here
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
       console.log('done stretching');
       resolve();
@@ -13,7 +13,7 @@ function stretch() {
 
 function runOnTreadmill() {
   // Your code here
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
      console.log("done running on treadmill");
      resolve();
@@ -23,7 +23,7 @@ function runOnTreadmill() {
 
 function liftWeights() {
   // Your code here
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
       console.log("done lifting wieghts");
       resolve();
@@ -37,7 +37,17 @@ function workout() {
     .then(() => runOnTreadmill())
     .then(() => liftWeights())
     .then(() => console.log('done working out'))
+    .catch((err) => console.log(err))
 }
+
+// function workout() {
+//   // refactor this code to use Promise.all
+//   stretch()
+//     .then(runOnTreadmill)
+//     .then(liftWeights)
+//     .then(() => console.log("done working out"))
+//     .catch((err) => console.log(err));
+// }
 
 
 /* ============================ TEST YOUR CODE ============================

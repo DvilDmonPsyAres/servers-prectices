@@ -5,12 +5,12 @@
       "method": "GET",
       "URL": "/artists",
       "headers": false,
-      "body": "None"
+      "body": false
     },
     "response": {
       "headers": {"Content-type": "application/json"},
       "statusCode": 200,
-      "body": "information about all the artists"
+      "body": "[{…}]"
     }
   },
   "2": {
@@ -19,11 +19,11 @@
       "method": "GET",
       "URL": "/artists/:artistId",
       "headers": false,
-      "body": "None"
+      "body": false
     },
     "response": {
-      "headers": {},
-      "satusCode": 18,
+      "headers": {"Content-Type": "application/json"},
+      "statusCode": 200,
       "body": ""
     }
   },
@@ -45,7 +45,7 @@
       "headers": {
         "Content-Type": "application/json"
       },
-      "satusCode": 201,
+      "statusCode": 201,
       "body": {
         "id": ":artistId",
         "name": "New artist Name",
@@ -71,7 +71,7 @@
       "headers": {
         "Content-Type": "application/json"
       },
-      "satusCode": 200,
+      "statusCode": 200,
       "body": {
         "id": ":artistId",
         "name": "Updated Artist Name",
@@ -91,8 +91,8 @@
       "headers": {
         "Content-Type": "application/json"
       },
-      "satusCode": 200,
-      "body": false
+      "statusCode": 200,
+      "body": {"message": "Sucesfully deleted"}
     }
   },
   "6": {
@@ -105,30 +105,30 @@
     },
     "response": {
       "headers": {"Content-type": "application/json"},
-      "satusCode": 200,
+      "statusCode": 200,
       "body": ":artistId albums"
     }
   },
   "7": {
     "endpoint": "Get a specific album's details based on albumId",
     "request": {
-      "method": "",
+      "method": "GET",
       "URL": "/albums/:albumId",
       "headers": false,
       "body": "None"
     },
     "response": {
       "headers": {"Content-type": "application/json"},
-      "satusCode": 200,
+      "statusCode": 200,
       "body": ":albumId details"
     }
   },
   "8": {
     "endpoint": "Add an album to a specific artist based on artistId",
     "request": {
-      "method": "",
+      "method": "POST",
       "URL": "/artists/:artistId/albums",
-      "headers": false,
+      "headers": {"Content-Type": "application/json"},
       "body": {
         "name": "new Album name",
         "songs": []
@@ -136,7 +136,7 @@
     },
     "response": {
       "headers": {"Content-Type": "application/json"},
-      "satusCode": 200,
+      "statusCode": 201,
       "body": ":newAlbumName :albumId :artistid"
     }
   },
@@ -153,22 +153,22 @@
     },
     "response": {
       "headers": {"Content-Type": "application/json"},
-      "satusCode": 200,
+      "statusCode": 200,
       "body": ""
     }
   },
   "10": {
     "endpoint": "Delete a specified album by albumId",
     "request": {
-      "method": "",
+      "method": "DELETE",
       "URL": "/albums/:albumId",
       "headers": false,
-      "body": "None"
+      "body": false
     },
     "response": {
       "headers": {"Content-Type": "application/json"},
-      "satusCode": 200,
-      "body": "message: 'Sucesfully deleted'"
+      "statusCode": 200,
+      "body": {"message": "Sucesfully deleted"}
     }
   },
   "11": {
@@ -181,22 +181,22 @@
     },
     "response": {
       "headers": {"Content-Type": "application/json"},
-      "satusCode": 200,
+      "statusCode": 200,
       "body": "array of :artistId songs"
     }
   },
   "12": {
     "endpoint": "Get all songs of a specific album based on albumId",
     "request": {
-      "method": "",
+      "method": "GET",
       "URL": "/albums/:albumId/songs",
       "headers": false,
-      "body": "None"
+      "body": false
     },
     "response": {
       "headers": {"Content-Type": "application/json"},
-      "satusCode": 200,
-      "body": "array of :albumId songs"
+      "statusCode": 200,
+      "body": [{}]
     }
   },
   "13": {
@@ -205,11 +205,11 @@
       "method": "GET",
       "URL": "/songs/:trackNumber",
       "headers": false,
-      "body": "None"
+      "body": false
     },
     "response": {
       "headers": {"Content-Type": "application/json"},
-      "satusCode": 200,
+      "statusCode": 200,
       "body": ":trackNumber array of songs"
     }
   },
@@ -217,14 +217,14 @@
     "endpoint": "Get a specific song's details based on songId",
     "request": {
       "method": "GET",
-      "URL": "/songs/:trackId",
+      "URL": "/songs/:songId",
       "headers": false,
       "body": "None"
     },
     "response": {
       "headers": {"Content-Type": "application/json"},
-      "satusCode": 200,
-      "body": ":trackNumber array of songs"
+      "statusCode": 200,
+      "body": ":Song details"
     }
   },
   "15": {
@@ -240,7 +240,7 @@
     },
     "response": {
       "headers": {"Content-Type": "application/json"},
-      "satusCode": 201,
+      "statusCode": 201,
       "body": "new Song object"
     }
   },
@@ -257,7 +257,7 @@
     },
     "response": {
       "headers": {"Content-Type": "application/json"},
-      "satusCode": 200,
+      "statusCode": 200,
       "body": "edited song object details"
     }
   },
@@ -267,12 +267,12 @@
       "method": "DELETE",
       "URL": "/songs/:songId",
       "headers": false,
-      "body": "None"
+      "body": false
     },
     "response": {
       "headers": {"Content-Type": "application/json"},
-      "satusCode": 200,
-      "body": "message: 'Sucesfully deleted'"
+      "statusCode": 200,
+      "body": {"message": "Sucesfully deleted"}
     }
   }
 }

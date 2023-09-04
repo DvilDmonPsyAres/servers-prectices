@@ -1,49 +1,50 @@
-fetch('/artists', {
-  method: "GET",
-  headers: {"Content-type": "application/json"}})
-  .then(response => {
-    console.log("Status Code:", response.status); // Print the status code
-    console.log("Content-Type Header:", response.headers.get("content-type")); // Print the Content-Type header
-    console.log("Response URL:", response.url); // Print the URL of the response
-    response.json()
-      .then(resBody => console.log(resBody))
-})
-  .catch(error => {
-      console.error("Error:", error);
-});
-
-// 1 Get all the artists
-fetch('/artists')
-  .then(res => res.json())
-  .then(resBody => console.log(resBody))
-  .catch(error => {
-    console.error("Error:", error)});
-
-// 2 Get a specific artist's details based on artistId
-fetch('/artists/1')
-  .then(res => res.json())
-  .then(resBody => console.log(resBody))
-  .catch(error => {
-    console.error("Error:", error)});
-
-// 3 ADD AN ARTIST
-fetch('/artists', {
-  method: "POST",
-  headers: {"Content-type": "application/json"},
-  body: JSON.stringify({
-    name: 'New Artist Name',
-    albums: []
+fetch("/artists", {
+  method: 'GET'
   })
-})
   .then(response => {
-    console.log("Status Code:", response.status); // Print the status code
-    console.log("Content-Type Header:", response.headers.get("content-type")); // Print the Content-Type header
-    console.log("Response URL:", response.url); // Print the URL of the response
-})
-  .catch(error => {
-      console.error("Error:", error);
-});
+    console.log("Status Code:", response.status);
+    console.log("Content-Type Header:", response.headers.get("Content-Type"));
+    console.log("Respone URL:", response.url)
+    response.json()
+      .then(resBody => console.log("JSON resBody:", resBody))
+      .catch(error => console.log("Error:", error));
+  })
+  .catch(error => console.log('Error:', error));
 
+  //2
+
+  fetch("/artists/1", {
+    method: 'GET'
+    })
+    .then(response => {
+      console.log("Status Code:", response.status);
+      console.log("Content-Type Header:", response.headers.get("Content-Type"));
+      console.log("Respone URL:", response.url)
+      response.json()
+        .then(resBody => console.log("JSON resBody:", resBody))
+        .catch(error => console.log("Error:", error));
+    })
+    .catch(error => console.log('Error:', error));
+
+    // 3
+    fetch('/artists', {
+      method: "POST",
+      headers: {"Content-type": "application/json"},
+      body: JSON.stringify({
+        name: 'New Artist Name'
+      })
+    })
+      .then(response => {
+        console.log("Status Code:", response.status); // Print the status code
+        console.log("Content-Type Header:", response.headers.get("content-type")); // Print the Content-Type header
+        console.log("Response URL:", response.url); // Print the URL of the response
+        response.json()
+        .then(resBody => console.log("JSON resBody:", resBody))
+        .catch(error => console.log("Error:", error));
+    })
+      .catch(error => {
+          console.error("Error:", error);
+    });
 // 4 Edit a specified artist by artistId
 fetch('/artists/:artistId', {
   method: "PUT",
@@ -57,6 +58,9 @@ fetch('/artists/:artistId', {
     console.log("Status Code:", response.status); // Print the status code
     console.log("Content-Type Header:", response.headers.get("content-type")); // Print the Content-Type header
     console.log("Response URL:", response.url); // Print the URL of the response
+    response.json()
+      .then(resBody => console.log(resBody))
+      .catch(error => console.log('Error:', error))
 })
   .catch(error => {
       console.error("Error:", error);
@@ -70,10 +74,16 @@ fetch('/artists/:artistId', {
     console.log("Status Code:", response.status); // Print the status code
     console.log("Content-Type Header:", response.headers.get("content-type")); // Print the Content-Type header
     console.log("Response URL:", response.url); // Print the URL of the response
+    response.json()
+      .then(resBody => console.log('JSON response:', resBody))
+      .catch(error => console.log('Error:', error));
 })
   .catch(error => {
       console.error("Error:", error);
 });
+
+
+//6
 
 // 6 Get all albums of a specific artist based on artistId
 fetch('/artists/:artistId/albums', {
@@ -84,62 +94,44 @@ fetch('/artists/:artistId/albums', {
   .catch(error => {
     console.error("Error:", error)});
 
-// 7 Get a specific album's details based on albumId
+// 7 // Get a specific album's details based on albumId
+
 fetch('/albums/:albumId', {
-  method:'GET',
+  method: "GET",
 })
   .then(res => res.json())
-  .then(resBody => console.log('resBody: ', resBody))
-  .catch(error => console.error('Error:', error));
+  .then(resBody => console.log(resBody))
+  .catch(error => {
+    console.error("Error:", error)});
 
-// 8 Add an album to a specific artist based on artistId
 
-fetch('/artists/:artistId/albums', {
-  method:'POST',
-  headers: {"Content-Type": "application/json"},
-  body: JSON.stringify({
-  name: "new Album name",
-  songs: []
-  })
-})
-  .then(res => res.json())
-  .then(resBody => console.log('resBody: ', resBody))
-  .catch(error => console.error('Error:', error));
+    // 8 Add an album to a specific artist based on artistId
 
+    fetch('/artists/:artistId/albums', {
+      method:'POST',
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+      name: "new Album name",
+      songs: []
+      })
+    })
+      .then(res => res.json())
+      .then(resBody => console.log('resBody: ', resBody))
+      .catch(error => console.error('Error:', error));
 
 // 9 Edit a specified album by albumId
 fetch('/albums/:albumId', {
   method:'PUT',
   headers: {"Content-Type": "application/json"},
   body: JSON.stringify({
-  name: "new Edited Album name",
-  songs: []
+  name: "new Edited Album name"
   })
 })
   .then(res => res.json())
   .then(resBody => console.log('resBody: ', resBody))
   .catch(error => console.error('Error:', error));
 
-//getting statuscode
-  fetch('/albums/:albumId', {
-    method: "PUT",
-    headers: {"Content-type": "application/json"},
-    body: JSON.stringify({
-      name: "new Edited Album name",
-      songs: []
-      })})
-    .then(response => {
-      console.log("Status Code:", response.status); // Print the status code
-      console.log("Content-Type Header:", response.headers.get("content-type")); // Print the Content-Type header
-      console.log("Response URL:", response.url); // Print the URL of the response
-      response.json()
-        .then(resBody => console.log("JSON resBody:", resBody))
-  })
-    .catch(error => {
-        console.error("Error:", error);
-  });
-
-// 10 Delete a specified album by albumId
+  // 10 Delete a specified album by albumId
 fetch('/albums/:albumId', {
   method: "DELETE",
   })
@@ -153,6 +145,7 @@ fetch('/albums/:albumId', {
   .catch(error => {
       console.error("Error:", error);
 });
+
 
 // 11 Get all songs of a specific artist based on artistId
 
@@ -185,23 +178,6 @@ fetch('/albums/:albumId/songs', {
   .catch(error => {
       console.error("Error:", error);
 });
-
-// 13 Get all songs of a specified trackNumber
-
-fetch('/songs/:trackNumber', {
-  method: "GET",
-  })
-  .then(response => {
-    console.log("Status Code:", response.status); // Print the status code
-    console.log("Content-Type Header:", response.headers.get("content-type")); // Print the Content-Type header
-    console.log("Response URL:", response.url); // Print the URL of the response
-    response.json()
-      .then(resBody => console.log("JSON resBody:", resBody))
-})
-  .catch(error => {
-      console.error("Error:", error);
-});
-
 
 // 14 Get a specific song's details based on songId
 
@@ -242,16 +218,16 @@ fetch('/albums/:albumId/songs', {
       console.error("Error:", error);
 });
 
-
 // 16 Edit a specified song by songId
 
 fetch('/songs/:songId', {
   method: "PUT",
   headers: {"Content-type": "application/json"},
   body: JSON.stringify({
-    name: "new Edited Song Name",
-    lyrics: "newLyrics\ncontinue the lyrics"
-    })
+    "name": "new Edited Song Name",
+    "trackNumber": 2,
+    "lyrics": "newLyrics\ncontinue the lyrics"
+  })
   })
   .then(response => {
     console.log("Status Code:", response.status); // Print the status code
